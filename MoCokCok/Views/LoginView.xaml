@@ -6,11 +6,47 @@
         xmlns:local="clr-namespace:MoCokCok.Views"
         mc:Ignorable="d"
         Title="Login"
-        Height="350" Width="300"
+        Width="300" Height="340"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
         >
+    
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="140"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Image  Source="pack://application:,,,/MoCokCok;component/Resources/Images/img_login_1015x853.png"/>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <!-- ID -->
+            <Grid Grid.Row="0">
+                <TextBlock Text="아이디"/>
+                <TextBox Width="80"/>
+            </Grid>
+            
+            <!-- Password -->
+            <Grid Grid.Row="1">
+                <TextBlock Text="비밀번호"/>
+                <TextBox Width="80"/>
+            </Grid>
+        </Grid>
+
+        <StackPanel Grid.Row="2">
+            <Button Content="로그인" Width="80" Height="28"
+                    Command="{Binding}"/>
+
+            <Button Content="종료" Width="80" Height="28"
+                    Command="{Binding}"/>
+        </StackPanel>
     </Grid>
 </Window>

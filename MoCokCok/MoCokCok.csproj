@@ -107,8 +107,12 @@
     <Folder Include="Behaviours\" />
     <Folder Include="Converters\" />
     <Folder Include="Models\" />
-    <Folder Include="Resources\" />
     <Folder Include="Views\MoCokCok\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\img_login_1015x853.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
