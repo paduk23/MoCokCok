@@ -24,7 +24,9 @@
                 <VisualBrush x:Key="WaterMarkVisual"
                              TileMode="None" Stretch="None" AlignmentX="Left" AlignmentY="Center">
                     <VisualBrush.Visual>
-                        <TextBlock Grid.Column="1" Text="Please enter your id" FontStyle="Italic" Foreground="Gray"/>
+                        <Grid Background="Transparent">
+                            <TextBlock Grid.Column="1" Text="Please enter your id" FontStyle="Italic" Foreground="Gray" Margin="5 0 0 0"/>
+                        </Grid>
                     </VisualBrush.Visual>
                 </VisualBrush>
             </Style.Resources>
