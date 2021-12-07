@@ -4,12 +4,110 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MoCokCok.Views"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:behaviour="clr-namespace:MoCokCok.Behaviours"
         mc:Ignorable="d"
         Title="Login"
         Width="300" Height="340"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
         >
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding OnEventLoadedCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <Window.Resources>
+        <Style x:Key="WaterMarkId" TargetType="{x:Type TextBox}">
+            <Style.Resources>
+                <VisualBrush x:Key="WaterMarkVisual"
+                             TileMode="None" Stretch="None" AlignmentX="Left" AlignmentY="Center">
+                    <VisualBrush.Visual>
+                        <TextBlock Grid.Column="1" Text="Please enter your id" FontStyle="Italic" Foreground="Gray"/>
+                    </VisualBrush.Visual>
+                </VisualBrush>
+            </Style.Resources>
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border Name="border"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding Border.BorderBrush}"
+                                SnapsToDevicePixels="True">
+                                <ScrollViewer HorizontalScrollBarVisibility="Disabled"
+                                          VerticalScrollBarVisibility="Disabled"
+                                          Name="PART_ContentHost"
+                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="UIElement.IsMouseOver" Value="True">
+                                <Setter Property="Border.BorderBrush" TargetName="border" Value="DarkOliveGreen"/>
+                            </Trigger>
+                            <Trigger Property="UIElement.IsFocused" Value="True">
+                                <Setter Property="Border.BorderBrush" TargetName="border" Value="DarkOliveGreen"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="Text" Value="{x:Null}">
+                    <Setter Property="Background" Value="{StaticResource WaterMarkVisual}"/>
+                </Trigger>
+                <Trigger Property="Text" Value="">
+                    <Setter Property="Background" Value="{StaticResource WaterMarkVisual}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="WaterMarkPassword" TargetType="{x:Type PasswordBox}">
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="behaviour:PasswordWaterMark.IsMonitoring" Value="True"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type PasswordBox}">
+                        <Border Name="border"
+                                Cursor="IBeam"
+                                Background="{TemplateBinding Background}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                SnapsToDevicePixels="true">
+                            <Grid>
+                                <ScrollViewer x:Name="PART_ContentHost" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                                <TextBlock Text="Please enter your password"
+                                           VerticalAlignment="Center"
+                                           Foreground="Gray"
+                                           FontStyle="Italic"
+                                           Visibility="Collapsed"
+                                           Margin="5 0 0 0"
+                                           Name="txtPasswordWaterMark" />
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter TargetName="border" Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"/>
+                                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="behaviour:PasswordWaterMark.PasswordLength" Value="0">
+                                <Setter Property="Visibility" TargetName="txtPasswordWaterMark" Value="Visible"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="DarkOliveGreen"/>
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="DarkOliveGreen"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
     
     <Grid>
         <Grid.RowDefinitions>
@@ -30,20 +128,21 @@
 
             <!-- ID -->
             <Grid Grid.Row="0">
-                <TextBlock Text="아이디"/>
-                <TextBox Width="80"/>
+                <TextBox Width="200" Height="36"
+                         Style="{StaticResource WaterMarkId}"/>
             </Grid>
             
             <!-- Password -->
             <Grid Grid.Row="1">
-                <TextBlock Text="비밀번호"/>
-                <TextBox Width="80"/>
+                <PasswordBox Width="200" Height="36"
+                             Style="{StaticResource WaterMarkPassword}"/>
+                
             </Grid>
         </Grid>
 
-        <StackPanel Grid.Row="2">
-            <Button Content="로그인" Width="80" Height="28"
-                    Command="{Binding}"/>
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Content="로그인" Width="80" Height="28" Margin="0 0 15 0"
+                    Command="{Binding OnClickLoginCommand}"/>
 
             <Button Content="종료" Width="80" Height="28"
                     Command="{Binding}"/>
