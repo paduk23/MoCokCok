@@ -70,6 +70,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Resources\Templates\WaterMarkTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\LoginView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -108,7 +112,6 @@
   <ItemGroup>
     <Folder Include="Converters\" />
     <Folder Include="Models\" />
-    <Folder Include="Resources\Templates\" />
     <Folder Include="Views\MoCokCok\" />
   </ItemGroup>
   <ItemGroup>

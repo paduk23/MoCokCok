@@ -5,8 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MoCokCok.Views"
         mc:Ignorable="d"
-        Title="MoCokCokView" Height="450" Width="800">
+        Title="MoCokCok"
+        Height="450"
+        Width="800" MinWidth="600"
+        >
+
+
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
         
     </Grid>
 </Window>
