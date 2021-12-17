@@ -1,4 +1,5 @@
 ﻿using MoCokCok.Defines;
+using MoCokCok.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,13 +30,15 @@ namespace MoCokCok.ViewModels
 
 		private void Loaded()
 		{
-			MessageBox.Show($"Loaded");
+			//MessageBox.Show($"Loaded");
 			;
 		}
 		
 		private void Login()
 		{
-			MessageBox.Show($"Login");
+			var win = new MoCokCokView();
+			win.ShowDialog();
+
 			;
 		}
 	}
