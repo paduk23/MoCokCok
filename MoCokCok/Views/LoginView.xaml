@@ -5,13 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MoCokCok.Views"
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+		xmlns:viewModel="clr-namespace:MoCokCok.ViewModels"
         mc:Ignorable="d"
         Title="Login"
         Width="300" Height="340"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
         >
-    <i:Interaction.Triggers>
+	<Window.DataContext>
+		<viewModel:LoginViewModel/>
+	</Window.DataContext>
+
+		<i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding OnEventLoadedCommand}" />
         </i:EventTrigger>
